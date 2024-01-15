@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendez-vous à la Galerie de l'Évolution</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        #countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e44d26;
+            margin-top: 20px;
+        }
+	img { display:block;width:50%;margin:auto;border-radius:10px}
+    @media screen and (max-width:750px) {
+        img {
+            width:90%;
+        }
+    }
+    </style>
+</head>
+<body>
+<img src="https://www.hominides.com/wp-content/uploads/2021/12/cohorte-animaux.jpg"/>
+    <span id="explosion-container"></span>
+    <h1>Rendez-vous à la Galerie de l'Évolution</h1>
+    <p>Avec ton merveilleux copain (Willy, mais si tu sais, le blond lààà)</p>
+
+    <div id="countdown">Temps restant : </div>
+	<button style="border:none;background:#303030;color:#FAFAFA;margin-top:30px;padding:10px;border-radius:10px;width:400px;" onclick="heart()">Si tu aimes les coeurs...</button>
+    <script src="https://unpkg.com/emojisplosion/lib/global.js"></script>
+    <script>
+        // Date du rendez-vous
+        const rendezVousDate = new Date('2024-01-17T12:00:00');
+
+        // Fonction pour mettre à jour le compte à rebours
+        function updateCountdown() {
+            const now = new Date();
+            const timeDifference = rendezVousDate - now;
+
+            if (timeDifference > 0) {
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').textContent = `Temps restant : ${days}j ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById('countdown').textContent = 'Le rendez-vous est maintenant !';
+            }
+        }
+
+        // Mettre à jour le compte à rebours toutes les secondes
+        setInterval(updateCountdown, 1000);
+
+        // Appeler la fonction une fois pour initialiser le compte à rebours
+        updateCountdown();
+
+        function heart() {
+            emojisplosion({
+    emojis: ["❤️‍🔥"],
+});
+        }
+    </script>
+</body>
+</html>
